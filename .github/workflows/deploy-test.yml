@@ -22,3 +22,18 @@ jobs:
       - run: dotnet build ${{env.Project_Path}} -c Release --no-restore
 
       - run: dotnet publish ${{env.Project_Path}} -c Release /p:IncludeNativeLibrariesForSelfExtract=true --no-build
+
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+
+      - uses: csexton/release-asset-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: Test1/bin/Release/net6.0-windows/win-x64/publish/*.exe
+          release_url: ${{ steps.create_release.output.upload_url}}
+
