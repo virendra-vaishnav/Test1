@@ -21,4 +21,4 @@ jobs:
 
       - run: dotnet build ${{env.Project_Path}} -c Release --no-restore
 
-      - run: dotnet publish ${{env.Project_Path}} -c Release --self-contained -r win-x64 -p:publishSingleFile=true
+      - run: dotnet publish ${{env.Project_Path}} -c Release --self-contained -r win-x64 -p:publishSingleFile=true --no-build
