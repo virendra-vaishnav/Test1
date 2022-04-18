@@ -2,7 +2,7 @@ name: "Deploy Test Project"
 on:
   push:
     tags:
-      - "Test/v*"
+      - "Test1/v*"
 
 env:
   Project_Path: Test1/Test1.csproj
